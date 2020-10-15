@@ -4,5 +4,18 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZhaoAdminCore.API.Common\ZhaoAdminCore.API.Common.csproj" />
+    <ProjectReference Include="..\ZhaoAdminCore.API.IRepository\ZhaoAdminCore.API.IRepository.csproj" />
+    <ProjectReference Include="..\ZhaoAdminCore.API.IServices\ZhaoAdminCore.API.IServices.csproj" />
+    <ProjectReference Include="..\ZhaoAdminCore.API.Model\ZhaoAdminCore.API.Model.csproj" />
+  </ItemGroup>
+
 
 </Project>

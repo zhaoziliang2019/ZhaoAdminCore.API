@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZhaoAdminCore.API.IRepository\ZhaoAdminCore.API.IRepository.csproj" />
+    <ProjectReference Include="..\ZhaoAdminCore.API.IServices\ZhaoAdminCore.API.IServices.csproj" />
+  </ItemGroup>
+
+</Project>
