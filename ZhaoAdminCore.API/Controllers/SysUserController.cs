@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZhaoAdminCore.API.Common.Helper;
@@ -16,11 +17,13 @@ namespace ZhaoAdminCore.API.Controllers
     {
         private readonly ISysUserService sysUserService;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IUserRoleService userRoleService;
 
-        public SysUserController(ISysUserService _sysUserService, IRepository.UnitOfWork.IUnitOfWork _unitOfWork)
+        public SysUserController(ISysUserService _sysUserService, IRepository.UnitOfWork.IUnitOfWork _unitOfWork, IUserRoleService _userRoleService)
         {
             sysUserService = _sysUserService;
             unitOfWork = _unitOfWork;
+            userRoleService = _userRoleService;
         }
         /// <summary>
         /// 获取所有用户数据
@@ -133,6 +136,9 @@ namespace ZhaoAdminCore.API.Controllers
                 data.msg = "该用户信息不存在！";
                 return data;
             }
+            var userroleids = (await userRoleService.Query(n => n.uID == userinfo.uID)).Select(n => n.rID).ToList();
+            userinfo.rIDs = new List<int>();
+            userinfo.rIDs = userroleids;
             data.success = userinfo.uID > 0;
             data.response = userinfo;
             return data;
@@ -148,10 +154,35 @@ namespace ZhaoAdminCore.API.Controllers
                 data.msg = "更新用户信息失败！";
                 return data;
             }
-            data.success = await sysUserService.Update(sysUserInfo);
-            if (data.success)
+            try
             {
-                data.msg = "更新用户信息成功";
+                unitOfWork.BeginTran();
+                if (sysUserInfo.rIDs.Count > 0)
+                {
+                    //该用户下所有的角色都删除
+                    var userroleids = (await userRoleService.Query(n => n.uID == sysUserInfo.uID)).Select(n => n.ID.ToString()).ToArray();
+                    if (userroleids.Count()>0)
+                    {
+                        var alluserroleid = await userRoleService.DeleteByIds(userroleids);
+                    }
+                    //该用户下添加角色
+                    var UserRoleAdd = new List<UserRoleInfo>();
+                    sysUserInfo.rIDs.ForEach(rid=> {
+                        UserRoleAdd.Add(new UserRoleInfo(sysUserInfo.uID,rid));
+                    });
+                    var addUserRoles = await userRoleService.Add(UserRoleAdd);
+                }
+                sysUserInfo.uUpdateTime = DateTime.Now;
+                data.success = await sysUserService.Update(sysUserInfo);
+                unitOfWork.BeginTran();
+                if (data.success)
+                {
+                    data.msg = "更新用户信息成功";
+                }
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.RollbackTran();
             }
             return data;
         }

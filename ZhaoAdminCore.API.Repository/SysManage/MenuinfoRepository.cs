@@ -19,9 +19,9 @@ using ZhaoAdminCore.API.Repository.BASE;
 
 namespace ZhaoAdminCore.API.Repository.SysManage
 {
-    public class PermissionRepository: BaseRepository<Permissioninfo>, IPermissionRepository
+    public class MenuinfoRepository: BaseRepository<MenuInfo>, IMenuinfoRepository
     {
-        public PermissionRepository(IUnitOfWork unitOfWork) :base(unitOfWork)
+        public MenuinfoRepository(IUnitOfWork unitOfWork) :base(unitOfWork)
         {
 
         }

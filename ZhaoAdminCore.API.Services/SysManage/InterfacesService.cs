@@ -1,13 +1,13 @@
 ﻿/******************************************************************** 
 ** 作    者：zzl
-** 创始时间：2020/10/13 14:42:10
+** 创始时间：2020/10/16 10:05:21
 ** 修 改 人： 
 ** 修改时间：
 ** 修 改 人：
 ** 修改时间：
 ** 版   本：1.0           
-** 名    称： PermissionService
-** 描    述： PermissionService
+** 名    称： InterfacesService
+** 描    述： InterfacesService
 ********************************************************************/
 using System;
 using System.Collections.Generic;
@@ -19,14 +19,14 @@ using ZhaoAdminCore.API.Services.BASE;
 
 namespace ZhaoAdminCore.API.Services.SysManage
 {
-    public class PermissionService : BaseService<Permissioninfo>, IPermissionService
+    public class InterfacesService: BaseService<InterfacesInfo>,IInterfacesService
     {
-        private readonly IPermissionRepository permissionRepository;
+        private readonly IInterfacesRepository interfacesRepository;
 
-        public PermissionService(IPermissionRepository _permissionRepository)
+        public InterfacesService(IInterfacesRepository _interfacesRepository)
         {
-            permissionRepository = _permissionRepository;
-            this.BaseDal = _permissionRepository;
+            this.interfacesRepository = _interfacesRepository;
+            this.BaseDal = _interfacesRepository;
         }
     }
 }

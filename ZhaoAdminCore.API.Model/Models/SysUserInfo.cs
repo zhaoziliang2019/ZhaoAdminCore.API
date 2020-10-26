@@ -74,6 +74,11 @@ namespace ZhaoAdminCore.API.Model.Models
         /// </summary>
         [SugarColumn(IsNullable = true)]
         public bool uIsDelete { get; set; }
-        
+        /// <summary>
+        /// 角色id
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public List<int> rIDs { get; set; }
+
     }
 }

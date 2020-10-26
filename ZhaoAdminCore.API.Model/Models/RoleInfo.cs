@@ -1,13 +1,13 @@
 ﻿/******************************************************************** 
 ** 作    者：zzl
-** 创始时间：2020/10/16 17:20:06
+** 创始时间：2020/10/16 16:52:08
 ** 修 改 人： 
 ** 修改时间：
 ** 修 改 人：
 ** 修改时间：
 ** 版   本：1.0           
-** 名    称： PermissionInfo
-** 描    述： PermissionInfo
+** 名    称： RoleInfo
+** 描    述： RoleInfo
 ********************************************************************/
 using SqlSugar;
 using System;
@@ -17,56 +17,59 @@ using System.Text;
 namespace ZhaoAdminCore.API.Model.Models
 {
     /// <summary>
-    /// 权限
+    /// 角色类
     /// </summary>
-    public class PermissionInfo
+    public class RoleInfo
     {
         /// <summary>
-        /// 权限ID
+        /// 角色ID
         /// </summary>
         [SugarColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true)]
-        public int pID { get; set; }
+        public int rID { get; set; }
+
         /// <summary>
-        /// 菜单id
-        /// </summary>
-        public int mID { get; set; }
-        /// <summary>
-        /// 权限名称
+        /// 角色名称
         /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 50, IsNullable = true)]
-        public string pName { get; set; }
+        public string rName { get; set; }
         /// <summary>
         /// 是否删除 bool 1是true, 0是false
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public bool pIsDelete { get; set; }
+        public bool rIsDelete { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
-        public System.DateTime pCreateTime { get; set; } = DateTime.Now;
+        public System.DateTime rCreateTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 创建ID
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public int? pCreateId { get; set; }
+        public int? rCreateId { get; set; }
         /// <summary>
         /// 创建者
         /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 50, IsNullable = true)]
-        public string pCreateBy { get; set; }
+        public string rCreateBy { get; set; }
         /// <summary>
         /// 修改ID
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public int? pModifyId { get; set; }
+        public int? rModifyId { get; set; }
         /// <summary>
         /// 修改者
         /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 100, IsNullable = true)]
-        public string pModifyBy { get; set; }
+        public string rModifyBy { get; set; }
         /// <summary>
         /// 更新时间
         /// </summary>
-        public System.DateTime pUpdateTime { get; set; } = DateTime.Now;
+        public System.DateTime rUpdateTime { get; set; } = DateTime.Now;
+        /// <summary>
+        ///描述
+        /// </summary>
+        [SugarColumn(ColumnDataType = "nvarchar", Length = 100, IsNullable = true)]
+        public string rDescription { get; set; }
+
     }
 }

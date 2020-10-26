@@ -49,6 +49,10 @@ namespace ZhaoAdminCore.API.Repository.BASE
                 return _dbBase;
             }
         }
+        internal ISqlSugarClient Db
+        {
+            get { return _db; }
+        }
         public BaseRepository(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
