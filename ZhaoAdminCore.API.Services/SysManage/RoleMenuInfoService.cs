@@ -20,19 +20,19 @@ using ZhaoAdminCore.API.Services.BASE;
 
 namespace ZhaoAdminCore.API.Services.SysManage
 {
-    public class PermissionRoleMenuInfoService: BaseService<PermissionRoleMenuInfo>, IPermissionRoleMenuInfoService
+    public class RoleMenuInfoService: BaseService<RoleMenuInfo>, IRoleMenuInfoService
     {
-        private readonly IPermissionRoleMenuInfoRepository permissionRoleMenuInfoRepository;
+        private readonly IRoleMenuInfoRepository roleMenuInfoRepository;
 
-        public PermissionRoleMenuInfoService(IPermissionRoleMenuInfoRepository _permissionRoleMenuInfoRepository)
+        public RoleMenuInfoService(IRoleMenuInfoRepository _roleMenuInfoRepository)
         {
-            permissionRoleMenuInfoRepository = _permissionRoleMenuInfoRepository;
-            this.BaseDal = _permissionRoleMenuInfoRepository;
+            roleMenuInfoRepository = _roleMenuInfoRepository;
+            this.BaseDal = _roleMenuInfoRepository;
         }
 
-        public async Task<List<PermissionRoleMenuInfo>> GetPermissionRoleMenuInfos(List<int> rids)
+        public async Task<List<RoleMenuInfo>> GetRoleMenuInfos(List<int> rids)
         {
-            return await permissionRoleMenuInfoRepository.GetPermissionRoleMenuInfos(rids);
+            return await roleMenuInfoRepository.GetRoleMenuInfos(rids);
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using ZhaoAdminCore.API.Common.Helper;
+using ZhaoAdminCore.API.IRepository.UnitOfWork;
 using ZhaoAdminCore.API.IServices.SysManage;
 using ZhaoAdminCore.API.Model;
 using ZhaoAdminCore.API.Model.Models;
@@ -18,60 +19,46 @@ namespace ZhaoAdminCore.API.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IRoleService roleService;
-        private readonly IPermissionRoleMenuInfoService permissionRoleMenuInfoService;
+        private readonly IRoleMenuInfoService roleMenuInfoService;
         private readonly IMenuinfoService menuinfoService;
-        private readonly IPermissionInfoService permissionInfoService;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RoleController(IRoleService _roleService, IPermissionRoleMenuInfoService _permissionRoleMenuInfoService, IMenuinfoService _menuinfoService, IPermissionInfoService _permissionInfoService)
+        public RoleController(IRoleService _roleService, IRoleMenuInfoService _roleMenuInfoService, IMenuinfoService _menuinfoService, IUnitOfWork _unitOfWork)
         {
             roleService = _roleService;
-            permissionRoleMenuInfoService = _permissionRoleMenuInfoService;
+            roleMenuInfoService = _roleMenuInfoService;
             menuinfoService = _menuinfoService;
-            permissionInfoService = _permissionInfoService;
+            unitOfWork = _unitOfWork;
         }
-        /// <summary>
-        /// 获取所有的角色下的权限
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("get")]
-        public async Task<MessageModel<RoleMenuPermission>> Get()
-        {
-            var data = new MessageModel<RoleMenuPermission>();
-            var roles = await roleService.Query(n => n.rIsDelete == false);
-            var pRMlist = await permissionRoleMenuInfoService.GetPermissionRoleMenuInfos(roles.Select(n => n.rID).ToList());
-            //if (pRMlist.Count == 0)
-            //{
-            //    data.success = false;
-            //    data.msg = "未配置该用户的权限";
-            //    return data;
-            //}
-            var mList = await menuinfoService.Query(n => n.mIsDeleted == false);
 
-            var pList = await permissionInfoService.QueryByIDs(pRMlist.Select(n => n.pID.ToString()).Distinct().ToArray());
-
-            RoleMenuPermission roleMenuPermission = RoleMenuPermissionHelper.GetRoleMenuPermissions(roles, pRMlist, mList, pList);
-            data.success = true;
-            data.response = roleMenuPermission;
-            data.msg = "获取权限列表成功！";
-            return data;
-        }
         /// <summary>
         /// 获取所有的角色供用户绑定
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("rolelist")]
-        public async Task<MessageModel<List<RoleInfo>>> GetRoles()
+        public async Task<MessageModel<List<RoleMenuList>>> GetRoles()
         {
-            var data = new MessageModel<List<RoleInfo>>();
-            var rolelist= await roleService.Query(n => n.rIsDelete == false);
-            data.success = rolelist.Count > 0;
-            if (data.success)
-            {
-                data.msg = "获取角色列表成功！";
-                data.response = rolelist;
-            }
+            var data = new MessageModel<List<RoleMenuList>>();
+            var rList = await roleService.Query(n => n.rIsDelete == false);
+            var mList = await menuinfoService.Query(m => m.mIsDeleted == false);
+            var rmList = await roleMenuInfoService.Query();
+            data.success = true;
+            data.response = RoleMenuHelper.GetRoleMenuList(rList, mList, rmList);
+            return data;
+        }
+        /// <summary>
+        /// 获取分配权限树
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("tree")]
+        public async Task<MessageModel<List<RoleMenuTree>>> GetRoleMenuTree()
+        {
+            var data = new MessageModel<List<RoleMenuTree>>();
+            var mList = await menuinfoService.Query(m => m.mIsDeleted == false);
+            data.response = RoleMenuHelper.GetRoleMenuTree(mList);
+            data.success = true;
             return data;
         }
         /// <summary>
@@ -83,7 +70,7 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> Post(RoleInfo roleInfo)
         {
             var data = new MessageModel<string>();
-            data.success=await roleService.Add(roleInfo)>0;
+            data.success = await roleService.Add(roleInfo) > 0;
             if (data.success)
             {
                 data.msg = "添加角色成功！";
@@ -100,7 +87,7 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<RoleInfo>> GetRoleInfoById(int rid)
         {
             var data = new MessageModel<RoleInfo>();
-            if (rid==0)
+            if (rid == 0)
             {
                 data.success = false;
                 data.msg = "获取该角色的信息失败！";
@@ -137,7 +124,7 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> DeleteRoleInfo(int rid)
         {
             var data = new MessageModel<string>();
-            if (rid==0)
+            if (rid == 0)
             {
                 data.success = false;
                 data.msg = "删除该角色失败！";
@@ -145,7 +132,7 @@ namespace ZhaoAdminCore.API.Controllers
             }
             //物理上的删除，不是真正删除
             var role = await roleService.QueryById(rid);
-            if (role==null)
+            if (role == null)
             {
                 data.success = false;
                 data.msg = "删除该角色失败！";
@@ -157,6 +144,79 @@ namespace ZhaoAdminCore.API.Controllers
             {
                 data.msg = "删除该角色成功！";
             }
+            return data;
+        }
+        /// <summary>
+        /// 角色用户分配权限
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("setrolemenu")]
+        public async Task<MessageModel<string>> SetRoleMenuList(RoleMenuInfo roleMenuInfo)
+        {
+            var data = new MessageModel<string>();
+            if (roleMenuInfo.rID == 0||string.IsNullOrEmpty(roleMenuInfo.mIDs))
+            {
+                data.success = false;
+                data.msg = "分配权限失败！";
+                return data;
+            }
+            try
+            {
+                unitOfWork.BeginTran();
+                var rmids = (await roleMenuInfoService.Query(n => n.rID == roleMenuInfo.rID)).Select(n => n.rmID.ToString()).ToArray();
+                //删除该角色下所有权限
+                var res=await roleMenuInfoService.DeleteByIds(rmids);
+                //添加该角色下所有的权限
+                List<int> mRoot = new List<int>();
+                //去掉父节点
+                foreach (var item in roleMenuInfo.mIDs.Split(','))
+                {
+                    if((await menuinfoService.QueryById(item)).mPid != 0)
+                    {
+                        mRoot.Add(int.Parse(item));
+                    }
+                }
+                data.success = true;
+                mRoot.ForEach(async rm=>
+                {
+                    data.success=data.success&&await roleMenuInfoService.Add(new RoleMenuInfo(roleMenuInfo.rID, rm))>0;
+                });
+                if (data.success)
+                {
+                    data.msg = "分配权限成功！";
+                }
+                unitOfWork.CommitTran();
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.RollbackTran();
+            }
+            return data;
+        }
+
+        /// <summary>
+        /// 删除角色菜单关系
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deletermp")]
+        public async Task<MessageModel<List<RoleMenuList>>> DeleteRoleMenuInfo(int rid,int mid)
+        {
+            var data = new MessageModel<List<RoleMenuList>>();
+            if (rid==0|| mid == 0)
+            {
+                data.success = false;
+                data.msg = "删除权限失败！";
+                return data;
+            }
+            var rmids = (await roleMenuInfoService.Query(n=>n.mID==mid)).Select(n=>n.rmID.ToString()).ToArray();
+            data.success = await roleMenuInfoService.DeleteById(rmids);
+            var rList = await roleService.Query(n =>n.rID==rid&&n.rIsDelete == false);
+            var mList = await menuinfoService.Query(m => m.mIsDeleted == false);
+            var rmList = await roleMenuInfoService.Query();
+            data.response = RoleMenuHelper.GetRoleMenuList(rList, mList, rmList);
             return data;
         }
     }

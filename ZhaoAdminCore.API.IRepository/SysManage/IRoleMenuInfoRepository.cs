@@ -17,8 +17,8 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.IRepository.SysManage
 {
-    public interface IPermissionRoleMenuInfoRepository : IBaseRepository<PermissionRoleMenuInfo>
+    public interface IRoleMenuInfoRepository : IBaseRepository<RoleMenuInfo>
     {
-        public Task<List<PermissionRoleMenuInfo>> GetPermissionRoleMenuInfos(List<int> rids);
+        public Task<List<RoleMenuInfo>> GetRoleMenuInfos(List<int> rids);
     }
 }

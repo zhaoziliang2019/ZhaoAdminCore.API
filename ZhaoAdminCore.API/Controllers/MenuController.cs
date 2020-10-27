@@ -109,7 +109,16 @@ namespace ZhaoAdminCore.API.Controllers
             }
             else
             {
-                menuinfo.arrPid = new List<int>() { 0, menuinfo.mPid };
+                var cmenuinfo= await menuService.QueryById(menuinfo.mPid);
+                if (cmenuinfo.mPid==0)
+                {
+                    menuinfo.arrPid = new List<int>() { 0, menuinfo.mPid };
+                }
+                else
+                {
+                    var ccmenuinfo = await menuService.QueryById(cmenuinfo.mPid);
+                    menuinfo.arrPid = new List<int>() { 0, ccmenuinfo.mID,menuinfo.mPid };
+                }
             }
             data.success = menuinfo.mID>0;
             if (data.success)

@@ -63,6 +63,14 @@ namespace ZhaoAdminCore.API.Common.Helper
                 MenuOptions cRoot = new MenuOptions();
                 cRoot.value = item.mID;
                 cRoot.label = item.mName;
+                cRoot.children = new List<MenuOptions>();
+                foreach (var citem in menulist.FindAll(n=>n.mPid==item.mID))
+                {
+                    MenuOptions ccRoot = new MenuOptions();
+                    ccRoot.value = citem.mID;
+                    ccRoot.label = citem.mName;
+                    cRoot.children.Add(ccRoot);
+                }
                 root.children.Add(cRoot);
             }
             Mroot.children.Add(root);
@@ -121,6 +129,31 @@ namespace ZhaoAdminCore.API.Common.Helper
                         mUpdateTime = citem.mUpdateTime,
                         arrPid = citem.arrPid
                     };
+                    cmenuList.children = new List<MenuList>();
+                    var ccRoot = menulist.FindAll(n => n.mPid == citem.mID);
+                    foreach (var ccitem in ccRoot)
+                    {
+                        MenuList ccmenuList = new MenuList()
+                        {
+                            mID = ccitem.mID,
+                            mName = ccitem.mName,
+                            mPid = ccitem.mPid,
+                            mCreateBy = ccitem.mCreateBy,
+                            mCreateId = ccitem.mCreateId,
+                            mCreateTime = ccitem.mCreateTime,
+                            mDescription = ccitem.mDescription,
+                            mIcon = ccitem.mIcon,
+                            mIsDeleted = ccitem.mIsDeleted,
+                            mMid = ccitem.mMid,
+                            mModifyBy = ccitem.mModifyBy,
+                            mModifyId = ccitem.mModifyId,
+                            mOrderSort = ccitem.mOrderSort,
+                            mPath = ccitem.mPath,
+                            mUpdateTime = ccitem.mUpdateTime,
+                            arrPid = ccitem.arrPid
+                        };
+                        cmenuList.children.Add(ccmenuList);
+                    }
                     menuList.children.Add(cmenuList);
                 }
                 Mlist.Add(menuList);

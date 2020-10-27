@@ -20,9 +20,9 @@ using ZhaoAdminCore.API.Repository.BASE;
 
 namespace ZhaoAdminCore.API.Repository.SysManage
 {
-    public class PermissionRoleMenuInfoRepository: BaseRepository<PermissionRoleMenuInfo>, IPermissionRoleMenuInfoRepository
+    public class RoleMenuInfoRepository: BaseRepository<RoleMenuInfo>, IRoleMenuInfoRepository
     {
-        public PermissionRoleMenuInfoRepository(IUnitOfWork unitOfWork):base(unitOfWork)
+        public RoleMenuInfoRepository(IUnitOfWork unitOfWork):base(unitOfWork)
         {
 
         }
@@ -31,9 +31,9 @@ namespace ZhaoAdminCore.API.Repository.SysManage
         /// </summary>
         /// <param name="rids"></param>
         /// <returns></returns>
-        public async Task<List<PermissionRoleMenuInfo>> GetPermissionRoleMenuInfos(List<int> rids)
+        public async Task<List<RoleMenuInfo>> GetRoleMenuInfos(List<int> rids)
         {
-            return await Task.Run(()=>Db.Queryable<PermissionRoleMenuInfo>().In(n=>n.rID, rids).ToList());
+            return await Task.Run(()=>Db.Queryable<RoleMenuInfo>().In(n=>n.rID, rids).ToList());
         }
     }
 }

@@ -16,17 +16,22 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model.Models
 {
-    public class PermissionRoleMenuInfo
+    public class RoleMenuInfo
     {
+        public RoleMenuInfo()
+        {
+
+        }
+        public RoleMenuInfo(int rid,int mid)
+        {
+            this.rID = rid;
+            this.mID = mid;
+        }
         /// <summary>
-        /// 权限菜单id
+        /// 角色菜单id
         /// </summary>
         [SugarColumn(IsNullable = false, IsPrimaryKey = true, IsIdentity = true)]
-        public int pmID { get; set; }
-        /// <summary>
-        /// 权限id
-        /// </summary>
-        public int pID { get; set; }
+        public int rmID { get; set; }
         /// <summary>
         /// 菜单id
         /// </summary>
@@ -35,5 +40,10 @@ namespace ZhaoAdminCore.API.Model.Models
         /// 角色ID
         /// </summary>
         public int rID { get; set; }
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public string mIDs { get; set; }
     }
 }

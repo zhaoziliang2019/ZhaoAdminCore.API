@@ -17,8 +17,8 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.IServices.SysManage
 {
-    public interface IPermissionRoleMenuInfoService : IBaseService<PermissionRoleMenuInfo>
+    public interface IRoleMenuInfoService : IBaseService<RoleMenuInfo>
     {
-        public Task<List<PermissionRoleMenuInfo>> GetPermissionRoleMenuInfos(List<int> rids);
+        public Task<List<RoleMenuInfo>> GetRoleMenuInfos(List<int> rids);
     }
 }
