@@ -18,12 +18,14 @@ namespace ZhaoAdminCore.API.Controllers
         private readonly ISysUserService sysUserService;
         private readonly IUnitOfWork unitOfWork;
         private readonly IUserRoleService userRoleService;
+        private readonly IRoleService roleService;
 
-        public SysUserController(ISysUserService _sysUserService, IRepository.UnitOfWork.IUnitOfWork _unitOfWork, IUserRoleService _userRoleService)
+        public SysUserController(ISysUserService _sysUserService, IRepository.UnitOfWork.IUnitOfWork _unitOfWork, IUserRoleService _userRoleService, IRoleService _roleService)
         {
             sysUserService = _sysUserService;
             unitOfWork = _unitOfWork;
             userRoleService = _userRoleService;
+            roleService = _roleService;
         }
         /// <summary>
         /// 获取所有用户数据
@@ -41,6 +43,13 @@ namespace ZhaoAdminCore.API.Controllers
                 key = "";
             }
             var users = await sysUserService.QueryPage(n=>n.uIsDelete==false&&(n.uLoginName.Contains(key)),page,pagesize);
+            var roles = await roleService.Query(d => d.rIsDelete == false);
+            foreach (var item in users.data)
+            {
+                var rids = (await userRoleService.Query(r => r.uID == item.uID)).Select(r=>r.rID).ToList();
+                item.rIDs = rids;
+                item.rNames = roles.Where(n => rids.Contains(n.rID)).Select(n => n.rName).ToList();
+            }
             return new MessageModel<PageModel<SysUserInfo>>()
             {
                 msg = "获取成功",
@@ -99,6 +108,8 @@ namespace ZhaoAdminCore.API.Controllers
             {
                 unitOfWork.BeginTran();
                 sysUserInfo.uPassWord = MD5Helper.MD5Encrypt32(sysUserInfo.uPassWord);
+                //默认有5次机会登录
+                sysUserInfo.uErrorCount = 5;
                 var id = await sysUserService.Add(sysUserInfo);
                 data.success = id > 0;
                 if (data.success)

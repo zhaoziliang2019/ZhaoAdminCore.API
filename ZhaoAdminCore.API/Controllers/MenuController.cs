@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ZhaoAdminCore.API.Common.Helper;
+using ZhaoAdminCore.API.Common.HttpContextUser;
 using ZhaoAdminCore.API.IServices.SysManage;
 using ZhaoAdminCore.API.Model;
 using ZhaoAdminCore.API.Model.Models;
@@ -16,10 +17,12 @@ namespace ZhaoAdminCore.API.Controllers
     public class MenuController : ControllerBase
     {
         private readonly IMenuinfoService menuService;
+        private readonly ILoginUser loginUser;
 
-        public MenuController(IMenuinfoService _menuService)
+        public MenuController(IMenuinfoService _menuService, ILoginUser _loginUser)
         {
             menuService = _menuService;
+            loginUser = _loginUser;
         }
         /// <summary>
         /// 获取菜单树
@@ -84,6 +87,8 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> AddMenuInfo(MenuInfo menuInfo)
         {
             var data = new MessageModel<string>();
+            menuInfo.mCreateBy = loginUser.Name;
+            menuInfo.mCreateId = loginUser.ID;
             data.success = await menuService.Add(menuInfo) > 0;
             if (data.success)
             {
@@ -138,6 +143,9 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> UpdateMenuInfo(MenuInfo menuInfo)
         {
             var data = new MessageModel<string>();
+            menuInfo.mModifyBy = loginUser.Name;
+            menuInfo.mModifyId = loginUser.ID;
+            menuInfo.mUpdateTime = DateTime.Now;
             data.success = await menuService.Update(menuInfo);
             if (data.success)
             {

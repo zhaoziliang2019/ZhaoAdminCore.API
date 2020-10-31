@@ -75,10 +75,15 @@ namespace ZhaoAdminCore.API.Model.Models
         [SugarColumn(IsNullable = true)]
         public bool uIsDelete { get; set; }
         /// <summary>
-        /// 角色id
+        /// 所有的角色id
         /// </summary>
         [SugarColumn(IsIgnore = true)]
         public List<int> rIDs { get; set; }
+        /// <summary>
+        /// 所有的角色名称
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public List<string> rNames { get; set; }
 
     }
 }

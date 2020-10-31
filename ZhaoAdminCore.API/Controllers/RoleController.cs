@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using ZhaoAdminCore.API.Common.Helper;
+using ZhaoAdminCore.API.Common.HttpContextUser;
 using ZhaoAdminCore.API.IRepository.UnitOfWork;
 using ZhaoAdminCore.API.IServices.SysManage;
 using ZhaoAdminCore.API.Model;
@@ -22,13 +23,15 @@ namespace ZhaoAdminCore.API.Controllers
         private readonly IRoleMenuInfoService roleMenuInfoService;
         private readonly IMenuinfoService menuinfoService;
         private readonly IUnitOfWork unitOfWork;
+        private readonly ILoginUser loginUser;
 
-        public RoleController(IRoleService _roleService, IRoleMenuInfoService _roleMenuInfoService, IMenuinfoService _menuinfoService, IUnitOfWork _unitOfWork)
+        public RoleController(IRoleService _roleService, IRoleMenuInfoService _roleMenuInfoService, IMenuinfoService _menuinfoService, IUnitOfWork _unitOfWork, ILoginUser _loginUser)
         {
             roleService = _roleService;
             roleMenuInfoService = _roleMenuInfoService;
             menuinfoService = _menuinfoService;
             unitOfWork = _unitOfWork;
+            loginUser = _loginUser;
         }
 
         /// <summary>
@@ -37,9 +40,9 @@ namespace ZhaoAdminCore.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("rolelist")]
-        public async Task<MessageModel<List<RoleMenuList>>> GetRoles()
+        public async Task<MessageModel<List<RoleInfo>>> GetRoles()
         {
-            var data = new MessageModel<List<RoleMenuList>>();
+            var data = new MessageModel<List<RoleInfo>>();
             var rList = await roleService.Query(n => n.rIsDelete == false);
             var mList = await menuinfoService.Query(m => m.mIsDeleted == false);
             var rmList = await roleMenuInfoService.Query();
@@ -70,6 +73,8 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> Post(RoleInfo roleInfo)
         {
             var data = new MessageModel<string>();
+            roleInfo.rCreateBy = loginUser.Name;
+            roleInfo.rCreateId = loginUser.ID;
             data.success = await roleService.Add(roleInfo) > 0;
             if (data.success)
             {
@@ -112,6 +117,9 @@ namespace ZhaoAdminCore.API.Controllers
         public async Task<MessageModel<string>> UpdateRoleInfo(RoleInfo roleInfo)
         {
             var data = new MessageModel<string>();
+            roleInfo.rModifyBy = loginUser.Name;
+            roleInfo.rModifyId = loginUser.ID;
+            roleInfo.rUpdateTime = DateTime.Now;
             data.success = await roleService.Update(roleInfo);
             if (data.success)
             {
@@ -202,9 +210,9 @@ namespace ZhaoAdminCore.API.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route("deletermp")]
-        public async Task<MessageModel<List<RoleMenuList>>> DeleteRoleMenuInfo(int rid,int mid)
+        public async Task<MessageModel<List<RoleInfo>>> DeleteRoleMenuInfo(int rid,int mid)
         {
-            var data = new MessageModel<List<RoleMenuList>>();
+            var data = new MessageModel<List<RoleInfo>>();
             if (rid==0|| mid == 0)
             {
                 data.success = false;

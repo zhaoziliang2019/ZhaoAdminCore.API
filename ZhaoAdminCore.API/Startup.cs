@@ -31,6 +31,7 @@ namespace ZhaoAdminCore.API
             services.AddSqlsugarSetup();//注册sqlsugar连接字符串
             services.AddDbSetup();//注册数据库
             services.AddCorsSetup();//注册跨越
+            services.AddHttpContextSetup();//获取当前登录用户
             services.AddControllers();
         }
         /// <summary>

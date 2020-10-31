@@ -70,6 +70,11 @@ namespace ZhaoAdminCore.API.Model.Models
         /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 100, IsNullable = true)]
         public string rDescription { get; set; }
+        /// <summary>
+        /// 角色下面的菜单列表
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public List<MenuInfo> children { get; set; }
 
     }
 }

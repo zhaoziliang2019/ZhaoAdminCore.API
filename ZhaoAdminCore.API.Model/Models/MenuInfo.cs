@@ -97,5 +97,10 @@ namespace ZhaoAdminCore.API.Model.Models
         /// </summary>
         [SugarColumn(IsIgnore = true)]
         public List<int> arrPid { get; set; }
+        /// <summary>
+        /// 菜单下面的子菜单
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public List<MenuInfo> children { get; set; }
     }
 }

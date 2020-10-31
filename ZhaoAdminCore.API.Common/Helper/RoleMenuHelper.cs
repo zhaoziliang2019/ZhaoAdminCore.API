@@ -60,26 +60,13 @@ namespace ZhaoAdminCore.API.Common.Helper
         /// <param name="rlist"></param>
         /// <param name="mlist"></param>
         /// <returns></returns>
-        public static List<RoleMenuList> GetRoleMenuList(List<RoleInfo> rlist, List<MenuInfo> mlist, List<RoleMenuInfo> rmlist)
+        public static List<RoleInfo> GetRoleMenuList(List<RoleInfo> rlist, List<MenuInfo> mlist, List<RoleMenuInfo> rmlist)
         {
-            var root = new List<RoleMenuList>();
+            var root = new List<RoleInfo>();
             
             foreach (var item in rlist)
             {
-                RoleMenuList Root = new RoleMenuList()
-                {
-                    rID = item.rID,
-                    rName=item.rName,
-                    rCreateBy=item.rCreateBy,
-                    rCreateId=item.rCreateId,
-                    rCreateTime=item.rCreateTime,
-                    rDescription=item.rDescription,
-                    rIsDelete=item.rIsDelete,
-                    rModifyBy=item.rModifyBy,
-                    rModifyId=item.rModifyId,
-                    rUpdateTime=item.rUpdateTime,
-                };
-                Root.children = new List<MenuChildrenList>();
+                item.children = new List<MenuInfo>();
                 List<int> RmList = new List<int>();
                 //找父节点
                 foreach (var ritem in rmlist.FindAll(n=>n.rID==item.rID))
@@ -107,26 +94,7 @@ namespace ZhaoAdminCore.API.Common.Helper
                 foreach (var citem in RmList)
                 {
                     var cMenuInfo = mlist.Single(n => n.mID == citem);//父节点
-                    MenuChildrenList mRoot = new MenuChildrenList()
-                    {
-                        mID = cMenuInfo.mID,
-                        mName = cMenuInfo.mName,
-                        mPid = cMenuInfo.mPid,
-                        mCreateBy = cMenuInfo.mCreateBy,
-                        mCreateId = cMenuInfo.mCreateId,
-                        mCreateTime = cMenuInfo.mCreateTime,
-                        mDescription = cMenuInfo.mDescription,
-                        mIcon = cMenuInfo.mIcon,
-                        mIsDeleted = cMenuInfo.mIsDeleted,
-                        mMid = cMenuInfo.mMid,
-                        mModifyBy = cMenuInfo.mModifyBy,
-                        mModifyId = cMenuInfo.mModifyId,
-                        mOrderSort = cMenuInfo.mOrderSort,
-                        mPath = cMenuInfo.mPath,
-                        mUpdateTime = cMenuInfo.mUpdateTime,
-                        arrPid = cMenuInfo.arrPid
-                    };
-                    mRoot.children = new List<MenuChildrenList>();
+                    cMenuInfo.children = new List<MenuInfo>();
                     var cmlist = new List<MenuInfo>();
                     mlist.FindAll(m => m.mPid == cMenuInfo.mID).ForEach(m=> {
                         if (rmlist.Exists(n=>n.mID== m.mID))
@@ -136,26 +104,7 @@ namespace ZhaoAdminCore.API.Common.Helper
                     });
                     foreach (var ccitem in cmlist)
                     {
-                        MenuChildrenList cmRoot = new MenuChildrenList()
-                        {
-                            mID = ccitem.mID,
-                            mName = ccitem.mName,
-                            mPid = ccitem.mPid,
-                            mCreateBy = ccitem.mCreateBy,
-                            mCreateId = ccitem.mCreateId,
-                            mCreateTime = ccitem.mCreateTime,
-                            mDescription = ccitem.mDescription,
-                            mIcon = ccitem.mIcon,
-                            mIsDeleted = ccitem.mIsDeleted,
-                            mMid = ccitem.mMid,
-                            mModifyBy = ccitem.mModifyBy,
-                            mModifyId = ccitem.mModifyId,
-                            mOrderSort = ccitem.mOrderSort,
-                            mPath = ccitem.mPath,
-                            mUpdateTime = ccitem.mUpdateTime,
-                            arrPid = ccitem.arrPid
-                        };
-                        cmRoot.children = new List<MenuChildrenList>();
+                        ccitem.children = new List<MenuInfo>();
                         var ccmlist = new List<MenuInfo>();
                         mlist.FindAll(m => m.mPid == ccitem.mID).ForEach(m => {
                             if (rmlist.Exists(n => n.mID == m.mID))
@@ -165,32 +114,13 @@ namespace ZhaoAdminCore.API.Common.Helper
                         });
                         foreach (var cccitem in ccmlist)
                         {
-                            MenuChildrenList ccmRoot = new MenuChildrenList()
-                            {
-                                mID = cccitem.mID,
-                                mName = cccitem.mName,
-                                mPid = cccitem.mPid,
-                                mCreateBy = cccitem.mCreateBy,
-                                mCreateId = cccitem.mCreateId,
-                                mCreateTime = cccitem.mCreateTime,
-                                mDescription = cccitem.mDescription,
-                                mIcon = cccitem.mIcon,
-                                mIsDeleted = cccitem.mIsDeleted,
-                                mMid = cccitem.mMid,
-                                mModifyBy = cccitem.mModifyBy,
-                                mModifyId = cccitem.mModifyId,
-                                mOrderSort = cccitem.mOrderSort,
-                                mPath = cccitem.mPath,
-                                mUpdateTime = cccitem.mUpdateTime,
-                                arrPid = cccitem.arrPid
-                            };
-                            cmRoot.children.Add(ccmRoot);
+                            ccitem.children.Add(cccitem);
                         }
-                        mRoot.children.Add(cmRoot);
+                        cMenuInfo.children.Add(ccitem);
                     }
-                    Root.children.Add(mRoot);
+                    item.children.Add(cMenuInfo);
                 }
-                root.Add(Root);
+                root.Add(item);
             }
             return root;
         }
@@ -203,17 +133,5 @@ namespace ZhaoAdminCore.API.Common.Helper
         public string name { get; set; }
         public List<RoleMenuTree> children { get; set; }
     }
-    #endregion
-     
-    #region 角色菜单列表
-    public class RoleMenuList:RoleInfo
-    {
-        public List<MenuChildrenList> children { get; set; }
-    }
-
-    public class MenuChildrenList:MenuInfo
-    {
-        public List<MenuChildrenList> children { get; set; }
-    }
-    #endregion
+    #endregion 
 }

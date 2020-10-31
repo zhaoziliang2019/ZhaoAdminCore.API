@@ -44,10 +44,13 @@ namespace ZhaoAdminCore.API.Controllers
                 //查询该用户所属的角色
 
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Name, user.FirstOrDefault().uRealName),
                     new Claim(JwtRegisteredClaimNames.Jti, user.FirstOrDefault().uID.ToString()),
                     new Claim(ClaimTypes.Expiration, DateTime.Now.AddSeconds(60).ToString()) };
                 var token = JwtToken.BuildJwtToken(claims.ToArray());
+                //更新登录用户的最近一次登录时间
+                user.FirstOrDefault().uLastErrTime = DateTime.Now;
+                await sysUserService.Update(user.FirstOrDefault());
                 return new MessageModel<TokenInfoViewModel>()
                 {
                     success = true,
@@ -57,11 +60,28 @@ namespace ZhaoAdminCore.API.Controllers
             }
             else
             {
-                return new MessageModel<TokenInfoViewModel>()
+                user = await sysUserService.Query(n => n.uLoginName == username&& n.uIsDelete == false);
+                //错误一次减去一次机会
+                user.FirstOrDefault().uLastErrTime = DateTime.Now;
+                if (user.FirstOrDefault().uErrorCount>0)
                 {
-                    success = false,
-                    msg = "认证失败",
-                };
+                    user.FirstOrDefault().uErrorCount -= 1;
+                    await sysUserService.Update(user.FirstOrDefault());
+                    return new MessageModel<TokenInfoViewModel>()
+                    {
+                        success = false,
+                        msg = $"认证失败,还有{user.FirstOrDefault().uErrorCount}登录机会",
+                    };
+                }
+                else
+                {
+                    return new MessageModel<TokenInfoViewModel>()
+                    {
+                        success = false,
+                        msg = $"认证失败,此账号错误次数太多已被锁定!",
+                    };
+                }
+               
             }
         }
     }
