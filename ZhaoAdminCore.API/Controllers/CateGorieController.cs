@@ -11,13 +11,13 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
-    [Route("api/goods")]
+    [Route("api/categories")]
     [ApiController]
-    public class GoodController : ControllerBase
+    public class CateGorieController : ControllerBase
     {
         private readonly ICateGorieInfoService cateGorieInfoService;
 
-        public GoodController(ICateGorieInfoService _cateGorieInfoService)
+        public CateGorieController(ICateGorieInfoService _cateGorieInfoService)
         {
             cateGorieInfoService = _cateGorieInfoService;
         }
