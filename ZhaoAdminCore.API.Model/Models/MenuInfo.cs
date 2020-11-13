@@ -16,6 +16,9 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model.Models
 {
+    /// <summary>
+    /// 菜单信息
+    /// </summary>
     public class MenuInfo
     {
         /// <summary>

@@ -11,6 +11,7 @@ namespace ZhaoAdminCore.API.Controllers
     /// </summary>
     [Route("api/interfaces/[action]")]
     [ApiController]
+    [Produces("application/json")]
     public class InterfacesController : ControllerBase
     {
         private readonly IInterfacesService interfacesService;
@@ -19,6 +20,13 @@ namespace ZhaoAdminCore.API.Controllers
         {
             interfacesService = _interfacesService;
         }
+        /// <summary>
+        /// 接口列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pagesize"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<MessageModel<PageModel<InterfacesInfo>>> Get(int page,int pagesize,string key="")
         {

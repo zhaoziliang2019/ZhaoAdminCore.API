@@ -16,6 +16,9 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model.Models
 {
+    /// <summary>
+    /// 系统用户信息
+    /// </summary>
     public class SysUserInfo
     {
         /// <summary>
@@ -39,16 +42,25 @@ namespace ZhaoAdminCore.API.Model.Models
         /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 100, IsNullable = true)]
         public string uRealName { get; set; }
-        // 性别
+        /// <summary>
+        ///性别
+        /// </summary>
+
         [SugarColumn(IsNullable = true)]
         public int uSex { get; set; } = 0;
-        // 地址
+        /// <summary>
+        /// 地址
+        /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 200, IsNullable = true)]
         public string uAddress { get; set; }
-        // 邮箱
+        /// <summary>
+        ///邮箱
+        /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 20, IsNullable = true)]
         public string uEmail { get; set; }
-        // 手机号
+        /// <summary>
+        /// 手机号
+        /// </summary>
         [SugarColumn(ColumnDataType = "nvarchar", Length = 11, IsNullable = true)]
         public string uPhone { get; set; }
         /// <summary>

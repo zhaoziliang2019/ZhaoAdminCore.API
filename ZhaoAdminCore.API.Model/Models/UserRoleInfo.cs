@@ -16,12 +16,23 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model.Models
 {
+    /// <summary>
+    /// 用户角色信息
+    /// </summary>
     public class UserRoleInfo
     {
+        /// <summary>
+        /// 默认构造函数
+        /// </summary>
         public UserRoleInfo()
         {
             
         }
+        /// <summary>
+        /// 带参数构造函数
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="rid"></param>
         public UserRoleInfo(int uid,int rid)
         {
             uID = uid;

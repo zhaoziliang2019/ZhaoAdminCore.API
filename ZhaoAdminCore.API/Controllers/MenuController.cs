@@ -12,6 +12,9 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 菜单管理
+    /// </summary>
     [Route("api/menus")]
     [ApiController]
     public class MenuController : ControllerBase
@@ -96,6 +99,11 @@ namespace ZhaoAdminCore.API.Controllers
             }
             return data;
         }
+        /// <summary>
+        /// 根据获取菜单信息
+        /// </summary>
+        /// <param name="mid"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("menu")]
         public async Task<MessageModel<MenuInfo>> GetMenuInfoById(int mid)

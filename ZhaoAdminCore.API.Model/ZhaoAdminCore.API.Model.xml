@@ -1,0 +1,762 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZhaoAdminCore.API.Model</name>
+    </assembly>
+    <members>
+        <member name="T:ZhaoAdminCore.API.Model.MessageModel`1">
+            <summary>
+            通用返回信息类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.MessageModel`1.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.MessageModel`1.success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.MessageModel`1.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.MessageModel`1.response">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.CateGorieInfo">
+            <summary>
+            商品分类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.cat_ID">
+            <summary>
+            分类ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.cat_Name">
+            <summary>
+            分类名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.cat_Pid">
+            <summary>
+            /分类父节点
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.cat_Level">
+            <summary>
+            分类当前级别
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.cat_IsDelete">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateGorieInfo.children">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.CateParamInfo">
+            <summary>
+            商品参数
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.attr_ID">
+            <summary>
+            分类参数id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.attr_Name">
+            <summary>
+            分类参数名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.cat_ID">
+            <summary>
+            分类参数所属分类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.attr_Sel">
+            <summary>
+            only:输入框唯一many:后台下拉列表/前台单选框
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.attr_Write">
+            <summary>
+            manual:手工录入list:从列表选择
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.CateParamInfo.attr_Vals">
+            <summary>
+            如果attr_Write:list,那么有值，该值以逗号隔开
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.GoodsListInfo">
+            <summary>
+            商品列表
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_ID">
+            <summary>
+            商品主键
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Price">
+            <summary>
+            商品价格
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Number">
+            <summary>
+            商品数量
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Weight">
+            <summary>
+            商品重量
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Cat">
+            <summary>
+            以逗号分割的分类列表
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_State">
+            <summary>
+            商品状态
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.add_Time">
+            <summary>
+            商品添加时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.upd_Time">
+            <summary>
+            商品更新时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.hot_Number">
+            <summary>
+            商品编号
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.is_Promote">
+            <summary>
+            是否打折
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Pics">
+            <summary>
+            图片数组
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Introduce">
+            <summary>
+            商品介绍
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.GoodsListInfo.goods_Attrs">
+            <summary>
+            动态参数呵静态属性
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.InterfacesInfo">
+            <summary>
+            接口类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iId">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iIsDeleted">
+             <summary>
+            获取或设置是否禁用，逻辑上的删除，非物理删除
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iLinkUrl">
+            <summary>
+            菜单链接地址
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iDescription">
+            <summary>
+            /描述
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iEnabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iCreateId">
+            <summary>
+            创建ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iCreateBy">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iModifyBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.InterfacesInfo.iModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo">
+            <summary>
+            物流信息
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.time">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.ftime">
+            <summary>
+            到达时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.context">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.location">
+            <summary>
+            当前位置
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.LogisticsProgressInfo.order_number">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.MenuInfo">
+            <summary>
+            菜单信息
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mID">
+            <summary>
+            菜单id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mPath">
+            <summary>
+            路由
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mName">
+            <summary>
+            菜单显示名
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mPid">
+            <summary>
+            上一级菜单（0表示上一级无菜单）
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mMid">
+            <summary>
+            接口api
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mOrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mIcon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mDescription">
+            <summary>
+            菜单描述    
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mIsDeleted">
+             <summary>
+            获取或设置是否禁用，逻辑上的删除，非物理删除
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mCreateId">
+            <summary>
+            创建ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mCreateBy">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mModifyBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.mUpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.arrPid">
+            <summary>
+            父节点列表
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.MenuInfo.children">
+            <summary>
+            菜单下面的子菜单
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.OrderInfo">
+            <summary>
+            订单
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.user_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_number">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_price">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_pay">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.Is_send">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.trade_no">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_fapiao_title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_fapiao_company">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.order_fapiao_content">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.consignee_addr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.pay_status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.creat_time">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.OrderInfo.update_time">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.PermissionInfo">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pID">
+            <summary>
+            权限ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.mID">
+            <summary>
+            菜单id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pName">
+            <summary>
+            权限名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pIsDelete">
+            <summary>
+            是否删除 bool 1是true, 0是false
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pCreateId">
+            <summary>
+            创建ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pCreateBy">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pModifyBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.PermissionInfo.pUpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.RoleInfo">
+            <summary>
+            角色类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rID">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rIsDelete">
+            <summary>
+            是否删除 bool 1是true, 0是false
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rCreateId">
+            <summary>
+            创建ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rCreateBy">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rModifyBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rUpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.rDescription">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleInfo.children">
+            <summary>
+            角色下面的菜单列表
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.RoleMenuInfo">
+            <summary>
+            角色菜单信息
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.#ctor(System.Int32,System.Int32)">
+            <summary>
+            带参数的构造函数
+            </summary>
+            <param name="rid"></param>
+            <param name="mid"></param>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.rmID">
+            <summary>
+            角色菜单id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.mID">
+            <summary>
+            菜单id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.rID">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.RoleMenuInfo.mIDs">
+            <summary>
+            菜单列表
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.SysUserInfo">
+            <summary>
+            系统用户信息
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uLoginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uPassWord">
+            <summary>
+            登录密码
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uRealName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uSex">
+             <summary>
+            性别
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uAddress">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uEmail">
+             <summary>
+            邮箱
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uPhone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uUpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uLastErrTime">
+             <summary>
+            最后登录时间 
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uErrorCount">
+             <summary>
+            错误次数 
+             </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.uIsDelete">
+            <summary>
+            是否删除 bool 1是true, 0是false
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.rIDs">
+            <summary>
+            所有的角色id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.SysUserInfo.rNames">
+            <summary>
+            所有的角色名称
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.Models.UserRoleInfo">
+            <summary>
+            用户角色信息
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Model.Models.UserRoleInfo.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Model.Models.UserRoleInfo.#ctor(System.Int32,System.Int32)">
+            <summary>
+            带参数构造函数
+            </summary>
+            <param name="uid"></param>
+            <param name="rid"></param>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.UserRoleInfo.ID">
+            <summary>
+            用户角色id
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.UserRoleInfo.uID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.Models.UserRoleInfo.rID">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.PageModel`1">
+            <summary>
+            通用分页信息类
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.PageModel`1.page">
+            <summary>
+            当前页标
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.PageModel`1.pageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.PageModel`1.dataCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.PageModel`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.PageModel`1.data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Model.TokenInfoViewModel">
+            <summary>
+            token信息
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.TokenInfoViewModel.success">
+            <summary>
+            成功失败
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.TokenInfoViewModel.token">
+            <summary>
+            token值
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.TokenInfoViewModel.expires_in">
+            <summary>
+            token有效时长
+            </summary>
+        </member>
+        <member name="P:ZhaoAdminCore.API.Model.TokenInfoViewModel.token_type">
+            <summary>
+            token类型
+            </summary>
+        </member>
+    </members>
+</doc>

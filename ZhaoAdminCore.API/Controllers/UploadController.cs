@@ -10,6 +10,9 @@ using ZhaoAdminCore.API.Model;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 上传文件管理
+    /// </summary>
     [Route("api/upload")]
     [ApiController]
     public class UploadController : ControllerBase

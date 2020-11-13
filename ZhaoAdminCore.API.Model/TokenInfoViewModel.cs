@@ -15,11 +15,26 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model
 {
+    /// <summary>
+    /// token信息
+    /// </summary>
     public class TokenInfoViewModel
     {
+        /// <summary>
+        /// 成功失败
+        /// </summary>
         public bool success { get; set; }
+        /// <summary>
+        /// token值
+        /// </summary>
         public string token { get; set; }
+        /// <summary>
+        /// token有效时长
+        /// </summary>
         public double expires_in { get; set; }
+        /// <summary>
+        /// token类型
+        /// </summary>
         public string token_type { get; set; }
     }
 }

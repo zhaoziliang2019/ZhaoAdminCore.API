@@ -14,7 +14,9 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
-    //角色管理
+   /// <summary>
+   /// 角色管理
+   /// </summary>
     [Route("api/roles")]
     [ApiController]
     public class RoleController : ControllerBase
@@ -127,6 +129,11 @@ namespace ZhaoAdminCore.API.Controllers
             }
             return data;
         }
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("delete")]
         public async Task<MessageModel<string>> DeleteRoleInfo(int rid)
@@ -157,7 +164,7 @@ namespace ZhaoAdminCore.API.Controllers
         /// <summary>
         /// 角色用户分配权限
         /// </summary>
-        /// <param name="ids"></param>
+        /// <param name="roleMenuInfo">角色信息</param>
         /// <returns></returns>
         [HttpPost]
         [Route("setrolemenu")]

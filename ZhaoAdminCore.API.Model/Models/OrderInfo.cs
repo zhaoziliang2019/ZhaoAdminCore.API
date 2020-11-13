@@ -20,20 +20,62 @@ namespace ZhaoAdminCore.API.Model.Models
     /// </summary>
     public class OrderInfo
     {
+        /// <summary>
+        /// 主键
+        /// </summary>
         public int order_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int user_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string order_number { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal order_price { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int order_pay { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Is_send { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string trade_no { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
 
         public string order_fapiao_title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string order_fapiao_company { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string  order_fapiao_content { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string consignee_addr { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int pay_status { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         public DateTime? creat_time { get; set; }
+        /// <summary>
+        /// 更新时间
+        /// </summary>
         public DateTime? update_time { get; set; }
     }
 }

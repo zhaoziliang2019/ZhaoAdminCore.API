@@ -198,6 +198,9 @@ namespace ZhaoAdminCore.API.Common.Helper
     /// </summary>
     public class MenuList:MenuInfo
     {
-       public  List<MenuList> children { get; set; }
+        /// <summary>
+        /// 菜单子类
+        /// </summary>
+        public new  List<MenuList>  children { get; set; }
     }
 }

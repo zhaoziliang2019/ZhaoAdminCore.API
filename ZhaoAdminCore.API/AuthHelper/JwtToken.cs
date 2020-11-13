@@ -17,7 +17,6 @@ namespace ZhaoAdminCore.API.AuthHelper
         /// 获取基于JWT的Token
         /// </summary>
         /// <param name="claims">需要在登陆的时候配置</param>
-        /// <param name="permissionRequirement">在startup中定义的参数</param>
         /// <returns></returns>
         public static TokenInfoViewModel BuildJwtToken(Claim[] claims)
         {

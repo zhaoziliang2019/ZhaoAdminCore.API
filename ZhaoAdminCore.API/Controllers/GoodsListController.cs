@@ -16,6 +16,7 @@ namespace ZhaoAdminCore.API.Controllers
     /// </summary>
     [Route("api/goodslists")]
     [ApiController]
+    [Produces("application/json")]
     public class GoodsListController : ControllerBase
     {
         private readonly IGoodsListService _goodsListService;

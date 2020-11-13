@@ -10,6 +10,9 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 订单管理
+    /// </summary>
     [Route("api/orders")]
     [ApiController]
     public class OrderController : ControllerBase

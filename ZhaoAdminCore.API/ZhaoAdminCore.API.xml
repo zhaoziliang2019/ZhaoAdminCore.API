@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZhaoAdminCore.API</name>
+    </assembly>
+    <members>
+        <member name="M:ZhaoAdminCore.API.AuthHelper.JwtToken.BuildJwtToken(System.Security.Claims.Claim[])">
+            <summary>
+            获取基于JWT的Token
+            </summary>
+            <param name="claims">需要在登陆的时候配置</param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.CateGorieController">
+            <summary>
+            商品分类
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateGorieController.GetCateGorieInfoList(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            商品分类列表
+            </summary>
+            <param name="type"></param>
+            <param name="pagenum"></param>
+            <param name="pagesize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateGorieController.AddCateGorieInfo(ZhaoAdminCore.API.Model.Models.CateGorieInfo)">
+            <summary>
+            添加分类
+            </summary>
+            <param name="cateGorieInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateGorieController.GetParentCateGorieList">
+            <summary>
+            获取父级分类、子分类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.CateParamController">
+            <summary>
+            商品参数
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateParamController.GetCateParamInfoList(System.String,System.Int32)">
+            <summary>
+            获取参数列表
+            </summary>
+            <param name="attr_sel"></param>
+            <param name="cat_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateParamController.AddCateParams(ZhaoAdminCore.API.Model.Models.CateParamInfo)">
+            <summary>
+            添加参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateParamController.GetCateParamInfoById(System.Int32)">
+            <summary>
+            根据id获取参数
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.CateParamController.UpdateCateParamInfo(ZhaoAdminCore.API.Model.Models.CateParamInfo)">
+            <summary>
+            更新商品参数
+            </summary>
+            <param name="cateParamInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.GoodsListController">
+            <summary>
+            商品列表
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.GoodsListController.GetGoodsList(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取商品列表
+            </summary>
+            <param name="query"></param>
+            <param name="pagenum"></param>
+            <param name="pagesize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.GoodsListController.AddGoodsListInfo(ZhaoAdminCore.API.Model.Models.GoodsListInfo)">
+            <summary>
+            添加商品
+            </summary>
+            <param name="goodsListInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.InterfacesController">
+            <summary>
+            接口管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.InterfacesController.Get(System.Int32,System.Int32,System.String)">
+            <summary>
+            接口列表
+            </summary>
+            <param name="page"></param>
+            <param name="pagesize"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.LoginController">
+            <summary>
+            登录管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.LoginController.GetLogin(System.String,System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.LogisticsProgressController">
+            <summary>
+            物流信息
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.LogisticsProgressController.GetLogisticsProgressInfosByOrderNumber(System.String)">
+            <summary>
+            快递
+            </summary>
+            <param name="order_number"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.MenuController">
+            <summary>
+            菜单管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.Get">
+            <summary>
+            获取菜单树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.GetMenuList">
+            <summary>
+            获取菜单列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.AddMenuInfo(ZhaoAdminCore.API.Model.Models.MenuInfo)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="menuInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.GetMenuInfoById(System.Int32)">
+            <summary>
+            根据获取菜单信息
+            </summary>
+            <param name="mid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.UpdateMenuInfo(ZhaoAdminCore.API.Model.Models.MenuInfo)">
+            <summary>
+            更新菜单列表
+            </summary>
+            <param name="menuInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.DeleteMenuInfoById(System.Int32)">
+            <summary>
+            删除菜单根据id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.MenuController.GetMenuRoot">
+            <summary>
+            获取选择父节点列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.OrderController">
+            <summary>
+            订单管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.OrderController.GetOrderInfoList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取订单列表
+            </summary>
+            <param name="pagenum"></param>
+            <param name="pagesize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.RoleController">
+            <summary>
+            角色管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.GetRoles">
+            <summary>
+            获取所有的角色供用户绑定
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.GetRoleMenuTree">
+            <summary>
+            获取分配权限树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.Post(ZhaoAdminCore.API.Model.Models.RoleInfo)">
+            <summary>
+            添加角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.GetRoleInfoById(System.Int32)">
+            <summary>
+            获取单个角色信息
+            </summary>
+            <param name="rid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.UpdateRoleInfo(ZhaoAdminCore.API.Model.Models.RoleInfo)">
+            <summary>
+            更新角色信息
+            </summary>
+            <param name="roleInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.DeleteRoleInfo(System.Int32)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="rid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.SetRoleMenuList(ZhaoAdminCore.API.Model.Models.RoleMenuInfo)">
+            <summary>
+            角色用户分配权限
+            </summary>
+            <param name="roleMenuInfo">角色信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.RoleController.DeleteRoleMenuInfo(System.Int32,System.Int32)">
+            <summary>
+            删除角色菜单关系
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.SysUserController">
+            <summary>
+            系统用户管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.getUsers(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取系统所有用户数据
+            </summary>
+            <param name="page">页码</param>
+            <param name="pagesize">页数</param>
+            <param name="key">关键字</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.ChangeUserState(System.Int32,System.Boolean)">
+            <summary>
+            更新系统用户状态信息
+            </summary>
+            <param name="userid"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.AddUserInfo(ZhaoAdminCore.API.Model.Models.SysUserInfo)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="sysUserInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.GetUserInfo(System.Int32)">
+            <summary>
+            根据id获取用户
+            </summary>
+            <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.UpdateUserInfo(ZhaoAdminCore.API.Model.Models.SysUserInfo)">
+            <summary>
+            更新系统用户信息
+            </summary>
+            <param name="sysUserInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.SysUserController.DeleteUserInfo(System.Int32)">
+            <summary>
+            删除系统用户
+            </summary>
+            <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.UploadController">
+            <summary>
+            上传文件管理
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.UploadController.post">
+            <summary>
+            保存照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Extensions.SwaggerSetup">
+            <summary>
+            配置Swagger
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            AutoFac注册接口和实现类
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>

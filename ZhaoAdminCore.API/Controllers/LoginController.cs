@@ -13,9 +13,13 @@ using ZhaoAdminCore.API.Model;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 登录管理
+    /// </summary>
     [Route("api/login")]
     [ApiController]
     [AllowAnonymous]
+    [Produces("application/json")]
     public class LoginController : ControllerBase
     {
         private readonly ISysUserService sysUserService;
@@ -24,6 +28,12 @@ namespace ZhaoAdminCore.API.Controllers
         {
             this.sysUserService = sysUserService;
         }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("login1.0")]
         public async Task<MessageModel<TokenInfoViewModel>> GetLogin(string username, string password)

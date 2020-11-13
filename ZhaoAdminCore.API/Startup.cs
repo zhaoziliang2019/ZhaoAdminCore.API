@@ -32,6 +32,7 @@ namespace ZhaoAdminCore.API
             services.AddDbSetup();//注册数据库
             services.AddCorsSetup();//注册跨越
             services.AddHttpContextSetup();//获取当前登录用户
+            services.AddSwaggerSetup();//配置Swagger
             services.AddControllers();
         }
         /// <summary>
@@ -49,6 +50,15 @@ namespace ZhaoAdminCore.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //启用中间件服务生成Swagger作为JSON终结点
+            app.UseSwagger();
+            //启用中间件服务对swagger-ui，指定Swagger JSON终结点
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZhaoAdminCore.API");
+            });
+
             app.UseCors("LimitRequests");//开启跨越
             app.UseRouting();
 

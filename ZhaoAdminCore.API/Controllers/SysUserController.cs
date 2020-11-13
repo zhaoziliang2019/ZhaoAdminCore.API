@@ -11,6 +11,9 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 系统用户管理
+    /// </summary>
     [Route("api/user")]
     [ApiController]
     public class SysUserController : ControllerBase
@@ -28,7 +31,7 @@ namespace ZhaoAdminCore.API.Controllers
             roleService = _roleService;
         }
         /// <summary>
-        /// 获取所有用户数据
+        /// 获取系统所有用户数据
         /// </summary>
         /// <param name="page">页码</param>
         /// <param name="pagesize">页数</param>
@@ -57,6 +60,12 @@ namespace ZhaoAdminCore.API.Controllers
                 response = users
             };
         }
+        /// <summary>
+        /// 更新系统用户状态信息
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("userstate")]
         public async Task<MessageModel<string>> ChangeUserState(int userid, bool status)
@@ -154,6 +163,11 @@ namespace ZhaoAdminCore.API.Controllers
             data.response = userinfo;
             return data;
         }
+        /// <summary>
+        /// 更新系统用户信息
+        /// </summary>
+        /// <param name="sysUserInfo"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("updateuser")]
         public async Task<MessageModel<string>> UpdateUserInfo(SysUserInfo sysUserInfo)
@@ -197,6 +211,11 @@ namespace ZhaoAdminCore.API.Controllers
             }
             return data;
         }
+        /// <summary>
+        /// 删除系统用户
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("deleteuser")]
         public async Task<MessageModel<string>> DeleteUserInfo(int uid)

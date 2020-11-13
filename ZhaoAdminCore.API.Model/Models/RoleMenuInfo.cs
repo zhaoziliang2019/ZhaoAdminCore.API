@@ -16,12 +16,23 @@ using System.Text;
 
 namespace ZhaoAdminCore.API.Model.Models
 {
+    /// <summary>
+    /// 角色菜单信息
+    /// </summary>
     public class RoleMenuInfo
     {
+        /// <summary>
+        /// 默认构造函数
+        /// </summary>
         public RoleMenuInfo()
         {
 
         }
+        /// <summary>
+        /// 带参数的构造函数
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <param name="mid"></param>
         public RoleMenuInfo(int rid,int mid)
         {
             this.rID = rid;

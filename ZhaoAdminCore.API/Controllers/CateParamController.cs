@@ -15,6 +15,7 @@ namespace ZhaoAdminCore.API.Controllers
     /// </summary>
     [Route("api/cateparams")]
     [ApiController]
+    [Produces("application/json")]
     public class CateParamController : ControllerBase
     {
         private readonly ICateParamInfoService _cateParamInfoService;

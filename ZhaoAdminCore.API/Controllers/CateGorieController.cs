@@ -11,7 +11,11 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 商品分类
+    /// </summary>
     [Route("api/categories")]
+    [Produces("application/json")]
     [ApiController]
     public class CateGorieController : ControllerBase
     {
@@ -30,6 +34,8 @@ namespace ZhaoAdminCore.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("categories")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<MessageModel<PageModel<CateGorieInfo>>> GetCateGorieInfoList(int type,int pagenum,int pagesize)
         {
             var data = new MessageModel<PageModel<CateGorieInfo>>();
@@ -62,6 +68,10 @@ namespace ZhaoAdminCore.API.Controllers
             }
             return data;
         }
+        /// <summary>
+        /// 获取父级分类、子分类
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("parentcates")]
         public async Task<MessageModel<List<CateGorieInfo>>> GetParentCateGorieList()

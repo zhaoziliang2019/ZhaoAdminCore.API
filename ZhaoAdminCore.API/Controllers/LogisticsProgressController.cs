@@ -10,6 +10,9 @@ using ZhaoAdminCore.API.Model.Models;
 
 namespace ZhaoAdminCore.API.Controllers
 {
+    /// <summary>
+    /// 物流信息
+    /// </summary>
     [Route("api/logisticsprogresss")]
     [ApiController]
     public class LogisticsProgressController : ControllerBase
@@ -20,6 +23,11 @@ namespace ZhaoAdminCore.API.Controllers
         {
             _logisticsProgressInfoService = logisticsProgressInfoService;
         }
+        /// <summary>
+        /// 快递
+        /// </summary>
+        /// <param name="order_number"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("kuaidi")]
         public async Task<MessageModel<List<LogisticsProgressInfo>>> GetLogisticsProgressInfosByOrderNumber(string order_number)

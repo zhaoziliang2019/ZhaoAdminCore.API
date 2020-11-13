@@ -47,6 +47,9 @@ namespace ZhaoAdminCore.API.Model.Models
         /// 以逗号分割的分类列表
         /// </summary>
         public string goods_Cat { get; set; }
+        /// <summary>
+        /// 商品状态
+        /// </summary>
         public int? goods_State { get; set; }
         /// <summary>
         /// 商品添加时间
@@ -56,8 +59,13 @@ namespace ZhaoAdminCore.API.Model.Models
        /// 商品更新时间
        /// </summary>
         public DateTime? upd_Time { get; set; } = System.DateTime.Now;
-
+        /// <summary>
+        /// 商品编号
+        /// </summary>
         public int hot_Number { get; set; }
+        /// <summary>
+        /// 是否打折
+        /// </summary>
         public bool is_Promote { get; set; }
         /// <summary>
         /// 图片数组
@@ -73,10 +81,5 @@ namespace ZhaoAdminCore.API.Model.Models
         /// 动态参数呵静态属性
         /// </summary>
         public string goods_Attrs { get; set; }
-    }
-
-    public class Goods_PicsInfo
-    {
-        public string goods_Pics { get; set; }
     }
 }
