@@ -314,6 +314,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:ZhaoAdminCore.API.Controllers.ValuesController">
+            <summary>
+            测试接口
+            </summary>
+        </member>
+        <member name="M:ZhaoAdminCore.API.Controllers.ValuesController.Get">
+            <summary>
+            get方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZhaoAdminCore.API.Extensions.IpPolicyRateLimitSetup">
+            <summary>
+            IP限流
+            </summary>
+        </member>
         <member name="T:ZhaoAdminCore.API.Extensions.SwaggerSetup">
             <summary>
             配置Swagger

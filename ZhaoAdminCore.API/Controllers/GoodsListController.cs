@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ZhaoAdminCore.API.Common.Redis;
 using ZhaoAdminCore.API.IServices.Goods;
 using ZhaoAdminCore.API.Model;
 using ZhaoAdminCore.API.Model.Models;
@@ -20,10 +21,12 @@ namespace ZhaoAdminCore.API.Controllers
     public class GoodsListController : ControllerBase
     {
         private readonly IGoodsListService _goodsListService;
+        private readonly IRedisCacheManager _RedisCacheManager;
 
-        public GoodsListController(IGoodsListService goodsListService)
+        public GoodsListController(IGoodsListService goodsListService, IRedisCacheManager redisCacheManager)
         {
             _goodsListService = goodsListService;
+            _RedisCacheManager = redisCacheManager;
         }
         /// <summary>
         /// 获取商品列表
